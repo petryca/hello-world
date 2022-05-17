@@ -2,13 +2,12 @@
 
     let response = await fetch('data.json');
     let data = await response.json(); 
-
-    // https://translations.ted.com/How_to_break_lines
+    let cache = [...data];
 
     function nobsp(str) {
-        let searchfor = ['a', 'an', 'and', 'the', 'of', 'in', 'at', 'to', 'on', 'or', 'as', 'so'];
+        let searchfor = ['a', 'an', 'and', 'the', 'of', 'in', 'at', 'to', 'on', 'or', 'as', 'so', 'it'];
 
-        str = str.replace(/\s(\w+[\.]?)$/, "&nbsp$1");
+        str = str.replace(/\s(\w+[\.|\?|\!]?)$/, "&nbsp$1");
 
         for (let i = 0; i < searchfor.length; i++) {
             let find = ' ' + searchfor[i] + ' ';
@@ -18,7 +17,6 @@
             replace = ' ' + searchfor[i] + '&nbsp;'
             str = str.replaceAll(find, replace);
         }
-
         return str;
     }
 
@@ -26,10 +24,10 @@
         document.querySelector('blockquote').classList.add('hidden');
 
         setTimeout(() => {
-            var quote = data[Math.floor(Math.random() * data.length)];
-
-            console.log(quote.text);
-            console.log(nobsp(quote.text));
+            if (!data.length) data = [...cache];
+            let index = Math.floor(Math.random() * data.length);
+            let quote = data[index];
+            data.splice(index, 1);
 
             document.querySelector('p').innerHTML = nobsp(quote.text);
             document.querySelector('a').innerText = quote.book + ' by ' + quote.author;
