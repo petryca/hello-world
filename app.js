@@ -10,7 +10,7 @@
     } 
 
     function nobsp(str) {
-        let searchfor = ['a', 'an', 'and', 'the', 'of', 'in', 'at', 'to', 'on', 'or', 'as', 'so', 'it'];
+        let searchfor = ['a', 'an', 'and', 'the', 'of', 'in', 'at', 'to', 'on', 'or', 'as'];
 
         str = str.replace(/\s(\w+[\.|\?|\!]?)$/, "&nbsp$1");
 
@@ -34,7 +34,7 @@
     document.querySelector('button').onclick = function () {
         if (interval) {
             document.querySelector('img').style.animationPlayState = 'paused';
-            clearInterval(interval);
+            clearTimeout(interval);
             interval = null;
             document.querySelector('button').innerText = 'play';
         } else {
@@ -46,13 +46,12 @@
                 setTimeout(() => {
                     let quote = data[index];
                     index = (index < (data.length - 1)) ? ++index : 0;
-                    console.log(index, '/', data.length);
                     document.querySelector('p').innerHTML = nobsp(quote.text);
                     document.querySelector('a').innerText = quote.book + ' by ' + quote.author;
                     document.querySelector('a').setAttribute('href', quote.url);
                     document.querySelector('blockquote').classList.remove('hidden');
                 }, 1000);
-                interval = setTimeout(play, 10000);
+                interval = setTimeout(play, 15000);
             })();
 
         }
