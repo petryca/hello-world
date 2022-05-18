@@ -12,7 +12,7 @@
   font-size: 18px;
   --base-color: #fff;
   --primary-color: #333;
-  --link-color: #797aae;
+  --second-color: #797aae;
   --active-color: #00aeff;
 }
 
@@ -28,8 +28,10 @@
   }
 }
 
+/* --- */
+
 body {
-  min-height: 100Vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +42,12 @@ body {
   color: var(--primary-color);
 }
 
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 img {
   display: block;
   width: 16rem;
@@ -47,13 +55,14 @@ img {
   animation-duration: 60s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  animation-play-state: paused;
 }
 
 blockquote {
   max-width: 40rem;
   margin: 2rem 2rem;
   opacity: 1;
-  transition: opacity 0.5s;
+  transition: opacity 1s;
 }
 
 blockquote.hidden {
@@ -67,15 +76,9 @@ p {
   margin-bottom: 1rem;
 }
 
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 a {
   text-decoration: none;
-  color: var(--link-color);
+  color: var(--second-color);
 }
 
 a:hover {
@@ -85,7 +88,7 @@ a:hover {
 
 button {
   display: block;
-  border: 1px solid var(--link-color);
+  border: 1px solid var(--second-color);
   border-radius: 4px;
   padding: 0.8rem 2.4rem;
   background-color: #fff;
@@ -93,7 +96,7 @@ button {
   font-family: inherit;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--link-color);
+  color: var(--second-color);
   cursor: pointer;
   transition: all 0.3s;
 }

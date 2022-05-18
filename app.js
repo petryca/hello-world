@@ -1,8 +1,13 @@
 (async () => {
 
-    let response = await fetch('data.json');
-    let data = await response.json(); 
-    let cache = [...data];
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    } 
 
     function nobsp(str) {
         let searchfor = ['a', 'an', 'and', 'the', 'of', 'in', 'at', 'to', 'on', 'or', 'as', 'so', 'it'];
@@ -20,20 +25,37 @@
         return str;
     }
 
+    let response = await fetch('data.json');
+    let data = await response.json();
+    shuffleArray(data);
+    let index = 0;
+    let interval = null;
+
     document.querySelector('button').onclick = function () {
-        document.querySelector('blockquote').classList.add('hidden');
+        if (interval) {
+            document.querySelector('img').style.animationPlayState = 'paused';
+            clearInterval(interval);
+            interval = null;
+            document.querySelector('button').innerText = 'play';
+        } else {
+            document.querySelector('img').style.animationPlayState = 'running';
+            document.querySelector('button').innerText = 'stop';
 
-        setTimeout(() => {
-            if (!data.length) data = [...cache];
-            let index = Math.floor(Math.random() * data.length);
-            let quote = data[index];
-            data.splice(index, 1);
+            (function play() {
+                document.querySelector('blockquote').classList.add('hidden');
+                setTimeout(() => {
+                    let quote = data[index];
+                    index = (index < (data.length - 1)) ? ++index : 0;
+                    console.log(index, '/', data.length);
+                    document.querySelector('p').innerHTML = nobsp(quote.text);
+                    document.querySelector('a').innerText = quote.book + ' by ' + quote.author;
+                    document.querySelector('a').setAttribute('href', quote.url);
+                    document.querySelector('blockquote').classList.remove('hidden');
+                }, 1000);
+                interval = setTimeout(play, 10000);
+            })();
 
-            document.querySelector('p').innerHTML = nobsp(quote.text);
-            document.querySelector('a').innerText = quote.book + ' by ' + quote.author;
-            document.querySelector('a').setAttribute('href', quote.url);
-            document.querySelector('blockquote').classList.remove('hidden');
-        }, 500);
+        }
     };
 
 })();
