@@ -31,7 +31,7 @@
 /* --- */
 
 body {
-  min-height: 96vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +40,7 @@ body {
   padding: 8rem 4rem;
   background-color: var(--base-color);
   color: var(--primary-color);
+  margin-bottom: 8rem;
 }
 
 @keyframes rotate {
