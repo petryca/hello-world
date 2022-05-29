@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 8rem 4rem;
+  padding: 8rem 1rem;
   background-color: var(--base-color);
   color: var(--primary-color);
   margin-bottom: 8rem;
@@ -60,7 +60,7 @@ img {
 }
 
 blockquote {
-  max-width: 44rem;
+  max-width: 46rem;
   margin: 2rem 2rem;
   opacity: 1;
   transition: opacity 1s;
