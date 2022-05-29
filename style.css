@@ -18,13 +18,13 @@
 
 @media (max-width: 600px) {
   :root {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 420px) {
   :root {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 10rem 4rem;
+  padding: 8rem 4rem;
   background-color: var(--base-color);
   color: var(--primary-color);
 }
@@ -59,7 +59,7 @@ img {
 }
 
 blockquote {
-  max-width: 40rem;
+  max-width: 44rem;
   margin: 2rem 2rem;
   opacity: 1;
   transition: opacity 1s;
