@@ -1,4 +1,4 @@
-# HTML / CSS / JavaScript Template
+# hello-world
 
 To use this project as a template for a new web page or web app click the **Code** button and select **Download ZIP**.
 
